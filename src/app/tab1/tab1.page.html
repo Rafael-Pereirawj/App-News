@@ -1,0 +1,21 @@
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" [pullFactor]="0.5" [pullMin]="100" [pullMax]="200" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-card *ngFor="let item of lista_items">
+    <ion-card-header>
+      <ion-img [src]="item.imagemUrl"></ion-img>
+      <ion-card-subtitle>{{ item.introducao }}</ion-card-subtitle>
+      <ion-card-title>{{ item.titulo}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      {{ item.data_publicacao }}
+    </ion-card-content>
+  </ion-card>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Carregando mais Notícias">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
